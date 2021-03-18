@@ -1,0 +1,45 @@
+---
+title: "Developing Data Products Course Project Presentation"
+author: "Lerata Maloke"
+date: "March 18, 2021"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Data Explorer
+
+This shiny app allows the user to explore the Joyner-Boore Attenuation Data set.  
+
+Use the slider to input a range of magnitude values.  
+
+The dataset is then subset to include only data for events with the selected magnitudes.  
+
+The plot displays Acceleration vs Distance, color coded by magnitude.  
+
+
+## The Data
+Description:  
+
+This data gives peak accelerations measured at various observation stations for 23 earthquakes in California. The data have been used by various workers to estimate the attenuating affect of distance on ground acceleration.
+
+Format:  
+Event - (numeric) Event Number  
+Mag - (numeric) Moment Magnitude  
+Station - (factor) Station Number  
+Dist - (numeric) Station-hypocenter distance (km)  
+Accel - (numeric) Peak acceleration (g)  
+
+
+## Sample Plot
+See plot for entire data set.  
+
+```{r, echo=FALSE, message=FALSE}
+library(plotly)
+plot_ly(attenu,x=~dist,y=~accel,type="scatter",mode="markers",color=~mag) %>%
+                        layout(title = 'Acceleration vs Distance from Hypocenter',
+                               xaxis = list(title = 'Station-Hypocenter Distance (km)'),
+                               yaxis = list(title = 'Peak Acceleration (g)'))
+```
